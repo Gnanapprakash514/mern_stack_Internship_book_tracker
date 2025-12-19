@@ -9,8 +9,9 @@ const Register = ({ onToggle }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5001'
     try {
-      const response = await fetch('http://localhost:5001/api/auth/register', {
+      const response = await fetch(`${API_BASE}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password })
