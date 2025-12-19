@@ -9,7 +9,6 @@ const BookTracker = ({ user, onLogout }) => {
   })
 
   const token = localStorage.getItem('token')
-  const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5001'
 
   useEffect(() => {
     fetchBooks()
@@ -17,7 +16,7 @@ const BookTracker = ({ user, onLogout }) => {
 
   const fetchBooks = async () => {
     try {
-      const response = await fetch(`${API_BASE}/api/books`, {
+      const response = await fetch('http://localhost:5001/api/books', {
         headers: { Authorization: `Bearer ${token}` }
       })
       const data = await response.json()
@@ -30,7 +29,7 @@ const BookTracker = ({ user, onLogout }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch(`${API_BASE}/api/books`, {
+      const response = await fetch('http://localhost:5001/api/books', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +52,7 @@ const BookTracker = ({ user, onLogout }) => {
 
   const deleteBook = async (id) => {
     try {
-      await fetch(`${API_BASE}/api/books/${id}`, {
+      await fetch(`http://localhost:5001/api/books/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       })
