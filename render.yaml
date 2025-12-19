@@ -1,3 +1,4 @@
+# Render manifest for Book Tracker (corrected)
 services:
   - type: web
     name: book-tracker-backend
@@ -13,9 +14,15 @@ services:
       - key: NODE_ENV
         value: production
 
+staticSites:
   - type: static
     name: book-tracker-frontend
     plan: free
     branch: main
     buildCommand: cd frontend && npm ci && npm run build
-    staticPublishPath: frontend/dist
+    root: frontend
+    publishPath: dist
+    envVars:
+      - key: NODE_ENV
+        value: production
+

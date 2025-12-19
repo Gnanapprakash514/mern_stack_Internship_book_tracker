@@ -17,6 +17,9 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mern_auth
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
 
+// Simple health check for Render and uptime monitoring
+app.get('/health', (req, res) => res.status(200).json({ status: 'ok' }));
+
 app.listen(process.env.PORT || 5000, () => {
   console.log('Book Tracker Server running on port 5000');
 });
