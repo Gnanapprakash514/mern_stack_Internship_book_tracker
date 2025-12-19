@@ -1,0 +1,30 @@
+# Render manifest for Book Tracker
+# Adjust names, branch, and env vars as needed before applying
+
+services:
+  - type: web
+    name: book-tracker-backend
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: cd backend && npm ci
+    startCommand: cd backend && npm start
+    healthCheckPath: /api/auth
+    envVars:
+      - key: MONGODB_URI
+      - key: JWT_SECRET
+      - key: NODE_ENV
+        value: production
+
+staticSites:
+  - type: static
+    name: book-tracker-frontend
+    env: static
+    plan: free
+    branch: main
+    buildCommand: cd frontend && npm ci && npm run build
+    root: frontend
+    publishPath: dist
+    envVars:
+      - key: NODE_ENV
+        value: production
