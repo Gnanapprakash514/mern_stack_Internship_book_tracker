@@ -16,7 +16,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mern_auth');
+// MongoDB connection with improved logging and timeout
+const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/mern_auth';
+mongoose.set('strictQuery', false);
+mongoose.connect(mongoUri, { serverSelectionTimeoutMS: 5000 })
+  .then(() => console.log(`MongoDB connected: ${mongoUri}`))
+  .catch((err) => console.error('MongoDB connection error:', err && err.message ? err.message : err));
+
+mongoose.connection.on('error', (err) => {
+  console.error('Mongoose connection error:', err);
+});
 
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);

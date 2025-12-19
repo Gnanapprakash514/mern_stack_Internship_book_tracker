@@ -7,6 +7,11 @@ This repo includes `render.yaml` at the repo root to declare two services:
   - Start: `cd backend && npm start`
   - Health check: `/health`
   - Required env vars: `MONGODB_URI`, `JWT_SECRET`, `NODE_ENV=production`
+  - MongoDB notes:
+    - Use MongoDB Atlas or a reachable Mongo instance.
+    - Example Atlas connection string: `mongodb+srv://<username>:<password>@cluster0.abcd.mongodb.net/<dbname>?retryWrites=true&w=majority` (replace placeholders).
+    - Make sure your MongoDB allows connections from Render (add the Render IPs to Atlas IP Access List or use 0.0.0.0/0 temporarily while testing).
+    - If you see a connection error in Render logs, check the `MONGODB_URI` value, username/password, and IP whitelist.
 
 - Frontend: `book-tracker-frontend` (Static site)
   - Build: `cd frontend && npm ci && npm run build`
