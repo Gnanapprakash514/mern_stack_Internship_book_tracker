@@ -6,16 +6,16 @@ services:
     branch: main
     buildCommand: cd backend && npm ci
     startCommand: cd backend && npm start
-    healthCheckPath: /api/auth
+    healthCheckPath: /health
     envVars:
       - key: MONGODB_URI
       - key: JWT_SECRET
       - key: NODE_ENV
         value: production
 
-staticSites:
-  - name: book-tracker-frontend
+  - type: static
+    name: book-tracker-frontend
     plan: free
     branch: main
     buildCommand: cd frontend && npm ci && npm run build
-    publishPath: frontend/dist
+    staticPublishPath: frontend/dist
