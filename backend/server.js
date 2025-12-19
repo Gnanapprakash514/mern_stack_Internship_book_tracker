@@ -20,6 +20,7 @@ app.use('/api/books', bookRoutes);
 // Simple health check for Render and uptime monitoring
 app.get('/health', (req, res) => res.status(200).json({ status: 'ok' }));
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log('Book Tracker Server running on port 5000');
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Book Tracker Server running on port ${PORT}`);
 });
