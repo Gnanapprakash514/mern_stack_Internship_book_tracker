@@ -20,4 +20,12 @@ Steps to deploy on Render (UI):
 3. Create both services and set the environment variables in each service's dashboard.
 4. Trigger deploy and monitor build logs.
 
+Local development (quick):
+- Backend:
+  - Create `backend/.env` or set env vars: `MONGODB_URI`, `JWT_SECRET`, `NODE_ENV=development`.
+  - Run: `cd backend && npm ci && npm start` (server defaults to port 5000).
+- Frontend:
+  - Create `frontend/.env.local` with `VITE_API_URL=http://localhost:5000`.
+  - Run: `cd frontend && npm ci && npm run dev` (Vite defaults to port 5173).
+
 Security: do not commit real secrets to the repository. Use Render's Environment settings to store secrets.
