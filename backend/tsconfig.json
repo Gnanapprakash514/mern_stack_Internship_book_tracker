@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "noEmit": true,
+    "types": ["node"]
+  },
+  "exclude": ["node_modules"]
+}
