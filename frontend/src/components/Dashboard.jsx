@@ -12,8 +12,9 @@ const Dashboard = ({ user, onLogout }) => {
   useEffect(() => {
     const fetchStats = async () => {
       const token = localStorage.getItem('token')
+      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5001'
       try {
-        const response = await fetch('http://localhost:5001/api/books/stats', {
+        const response = await fetch(`${API_BASE}/api/books/stats`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         const data = await response.json()
